@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "microcutting",
+  "version": "${version}",
+  "name": "MicroCutting",
+  "description": "Make Microblocks inside stonecutters",
+  "authors": [
+    "replaceitem"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/microcutting/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "microcutting.microcutting.MicroCutting"
+    ]
+  },
+  "mixins": [
+    "microcutting.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "minecraft": "1.17"
+  }
+}

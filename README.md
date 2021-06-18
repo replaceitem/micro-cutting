@@ -6,4 +6,4 @@ Recipes added with [orangemonkey68/injectable-recipes](https://github.com/orange
 
 ## Preview
 
-![stonecutter recipe preview](grafik.png)
+![stonecutter recipe preview](preview.png)

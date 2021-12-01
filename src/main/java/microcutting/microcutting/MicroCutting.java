@@ -2,23 +2,16 @@ package microcutting.microcutting;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Blocks;
-import net.minecraft.command.argument.ItemStackArgument;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtHelper;
 import net.minecraft.nbt.NbtList;
-import net.minecraft.nbt.NbtString;
-import net.minecraft.nbt.visitor.StringNbtWriter;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.StonecuttingRecipe;
-import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,7 +42,7 @@ public class MicroCutting implements ModInitializer, RecipeHolder {
         skullOwner.putUuid("Id",uuid);
         nbt.put("SkullOwner",skullOwner);
         ItemStack output = new ItemStack(Items.PLAYER_HEAD,8);
-        output.setTag(nbt);
+        output.setNbt(nbt);
         Ingredient input = Ingredient.ofStacks(item.getDefaultStack());
         StonecuttingRecipe recipe = new StonecuttingRecipe(new Identifier("microcutting",item.toString() + "_microblock"),"microblocks", input, output);
         stonecuttingRecipes.put(recipe.getId(), recipe);

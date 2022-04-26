@@ -1,11 +1,13 @@
 # MicroCutting
 
+<img src="https://raw.githubusercontent.com/replaceitem/microcutting/master/logo.png" align="right" width="128px"/>
+
 This mod adds recipes to the stonecutter to craft microblocks inside the stonecutter.
 By putting a grass block into the stonecutter, you can craft eight playerheads with the grass block texture.
 
 ## Preview
 
-![stonecutter recipe preview](preview.png)
+<img src="https://raw.githubusercontent.com/replaceitem/microcutting/master/preview.png"/>
 
 
 Credits:

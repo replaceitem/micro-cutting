@@ -1,7 +1,7 @@
-package microcutting.microcutting.mixin;
+package microcutting.mixin;
 
 import com.google.common.collect.ImmutableMap;
-import microcutting.microcutting.InjectableRecipes;
+import microcutting.InjectableRecipes;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
@@ -18,13 +18,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/*
+        Source: https://github.com/s0vi/injectable-recipes/blob/master/src/main/java/me/orangemonkey68/injectablerecipes/mixins/RecipeManagerMixin.java
+ */
+
+
 @Mixin(RecipeManager.class)
 public class RecipeManagerMixin {
 
     @Shadow private Map<RecipeType<?>, Map<Identifier, Recipe<?>>> recipes;
     Logger logger = LogManager.getLogger("injectable-recipes");
 
-    @Inject(method = "apply", at = @At(value = "TAIL"))
+    @Inject(method = "apply(Ljava/util/Map;Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/util/profiler/Profiler;)V", at = @At(value = "TAIL"))
     public void injectRecipes(CallbackInfo ci){
         //This probably doesn't NEED to be Immutable, but it's what Mojang uses, so better safe than sorry.
         recipes = ImmutableMap.copyOf(mergeRecipes(InjectableRecipes.getAllRecipes(), copyRecipes(recipes)));
@@ -56,8 +61,7 @@ public class RecipeManagerMixin {
         Map<RecipeType<?>, Map<Identifier, Recipe<?>>> map = new HashMap<>();
         recipes.forEach((type, map1) -> {
             if(map1 instanceof ImmutableMap){
-                Map<Identifier, Recipe<?>> identifierRecipeMap = new HashMap<>();
-                map1.forEach(identifierRecipeMap::put);
+                Map<Identifier, Recipe<?>> identifierRecipeMap = new HashMap<>(map1);
                 map.put(type, identifierRecipeMap);
             } else {
                 map.put(type, map1);

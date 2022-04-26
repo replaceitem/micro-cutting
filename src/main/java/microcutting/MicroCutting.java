@@ -1,4 +1,4 @@
-package microcutting.microcutting;
+package microcutting;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Blocks;

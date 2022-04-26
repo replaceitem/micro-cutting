@@ -1,4 +1,4 @@
-package microcutting.microcutting;
+package microcutting;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
@@ -19,10 +19,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class InjectableRecipes {
     private static final Map<Class<? extends RecipeHolder>, Map<RecipeType<?>, Map<Identifier, Recipe<?>>>> holders = new Object2ObjectOpenHashMap<>();
 
-//    private InjectableRecipes(){
-//
-//    }
-
     public static void register(RecipeHolder holder){
         if(holders.containsKey(holder.getClass())){
             throw new IllegalStateException(String.format("RecipeHolder %s already registered", holder.getClass()));
@@ -41,7 +37,6 @@ public class InjectableRecipes {
         return holders.get(holderClass);
     }
 
-    //noinspection CodeBlock2Expr
     public static Map<RecipeType<?>, Map<Identifier, Recipe<?>>> getAllRecipes(){
         List<Map<RecipeType<?>, Map<Identifier, Recipe<?>>>> holderRecipeMaps = new ArrayList<>(holders.values());
         Map<RecipeType<?>, Map<Identifier, Recipe<?>>> recipeMap = new Object2ObjectOpenHashMap<>();

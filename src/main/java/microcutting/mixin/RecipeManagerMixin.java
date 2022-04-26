@@ -2,12 +2,11 @@ package microcutting.mixin;
 
 import com.google.common.collect.ImmutableMap;
 import microcutting.InjectableRecipes;
+import microcutting.MicroCutting;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -27,7 +26,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class RecipeManagerMixin {
 
     @Shadow private Map<RecipeType<?>, Map<Identifier, Recipe<?>>> recipes;
-    Logger logger = LogManager.getLogger("injectable-recipes");
 
     @Inject(method = "apply(Ljava/util/Map;Lnet/minecraft/resource/ResourceManager;Lnet/minecraft/util/profiler/Profiler;)V", at = @At(value = "TAIL"))
     public void injectRecipes(CallbackInfo ci){
@@ -46,13 +44,13 @@ public class RecipeManagerMixin {
                 existingRecipes.get(type).put(id, recipe);
                 successfulMerges.getAndIncrement();
             }else {
-                logger.warn("Recipe with ID {} failed to merge. Are you registering the same ID twice?", id.toString());
+                MicroCutting.LOGGER.warn("Recipe with ID {} failed to merge. Are you registering the same ID twice?", id.toString());
                 failedMerges.getAndIncrement();
             }
         }));
 
-        logger.info("Successfully merged {} recipes into the game", successfulMerges.get());
-        logger.info("Failed to merge {} recipes", failedMerges.get());
+        MicroCutting.LOGGER.info("Successfully merged {} recipes into the game", successfulMerges.get());
+        MicroCutting.LOGGER.info("Failed to merge {} recipes", failedMerges.get());
 
         return existingRecipes;
     }

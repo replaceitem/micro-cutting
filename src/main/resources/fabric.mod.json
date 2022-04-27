@@ -10,7 +10,7 @@
   "contact": {},
   "license": "MIT",
   "icon": "assets/microcutting/icon.png",
-  "environment": "server",
+  "environment": "*",
   "entrypoints": {
     "main": [
       "microcutting.MicroCutting"

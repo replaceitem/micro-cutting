@@ -1,5 +1,7 @@
 # MicroCutting
 
+**This mod is only needed server-side!** 
+
 <img src="https://raw.githubusercontent.com/replaceitem/micro-cutting/master/logo.png" align="right" width="128px"/>
 
 This mod adds recipes to the stonecutter to craft microblocks inside the stonecutter.

@@ -29,6 +29,7 @@ public class MicroCutting implements ModInitializer, RecipeHolder {
     private Map<RecipeType<?>, Map<Identifier, Recipe<?>>> recipes;
     private Map<Identifier, Recipe<?>> stonecuttingRecipes;
     public static final Logger LOGGER = LogManager.getLogger("microcutting");
+    public static Config config;
 
     @Override
     public Map<RecipeType<?>, Map<Identifier, Recipe<?>>> getRecipes() {
@@ -48,7 +49,7 @@ public class MicroCutting implements ModInitializer, RecipeHolder {
         skullOwner.put("Properties",properties);
         skullOwner.putUuid("Id",uuid);
         nbt.put("SkullOwner",skullOwner);
-        ItemStack output = new ItemStack(Items.PLAYER_HEAD,8);
+        ItemStack output = new ItemStack(Items.PLAYER_HEAD, config.headCount);
         output.setNbt(nbt);
         Ingredient input = Ingredient.ofStacks(item.getDefaultStack());
         StonecuttingRecipe recipe = new StonecuttingRecipe(new Identifier("microcutting",item + "_microblock_" + index),"microblocks", input, output);
@@ -57,6 +58,7 @@ public class MicroCutting implements ModInitializer, RecipeHolder {
 
     @Override
     public void onInitialize() {
+        config = Config.loadConfig();
         recipes = new HashMap<>();
         stonecuttingRecipes = new HashMap<>();
         loadBlocksFromJson();

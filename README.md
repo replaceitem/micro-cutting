@@ -7,6 +7,12 @@
 This mod adds recipes to the stonecutter to craft microblocks inside the stonecutter.
 By putting a grass block into the stonecutter, you can craft eight playerheads with the grass block texture.
 
+## Configuration
+
+Some things can be configured in the `microcutting.properties` file in the `config` folder.
+
+* `head-count` (Default: `4`) The amount of heads you get for converting one block.
+
 ## Preview
 
 <img src="https://raw.githubusercontent.com/replaceitem/micro-cutting/master/preview.png"/>

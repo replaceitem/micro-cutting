@@ -20,7 +20,7 @@
     "microcutting.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.12.10",
-    "minecraft": "1.18.x"
+    "fabricloader": ">=0.12.0",
+    "minecraft": "*"
   }
 }

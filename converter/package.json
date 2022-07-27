@@ -1,0 +1,13 @@
+{
+  "name": "converter",
+  "version": "1.0.0",
+  "description": "Converts vanillatweaks trader datapack to json file of heads",
+  "main": "converter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "replaceitem",
+  "license": "MIT",
+  "type": "module"
+}

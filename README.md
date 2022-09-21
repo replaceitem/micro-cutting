@@ -1,5 +1,7 @@
 # MicroCutting
 
+[![Discord](https://img.shields.io/badge/Discord-7289DA?logo=discord&logoColor=white)](https://discord.gg/etTDQAVSgt)
+
 **This mod is only needed server-side!** 
 
 <img src="https://raw.githubusercontent.com/replaceitem/micro-cutting/master/logo.png" align="right" width="128px"/>

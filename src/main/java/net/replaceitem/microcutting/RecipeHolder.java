@@ -1,4 +1,4 @@
-package microcutting;
+package net.replaceitem.microcutting;
 
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;

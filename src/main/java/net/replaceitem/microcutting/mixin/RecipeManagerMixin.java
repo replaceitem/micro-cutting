@@ -1,8 +1,8 @@
-package microcutting.mixin;
+package net.replaceitem.microcutting.mixin;
 
 import com.google.common.collect.ImmutableMap;
-import microcutting.InjectableRecipes;
-import microcutting.MicroCutting;
+import net.replaceitem.microcutting.InjectableRecipes;
+import net.replaceitem.microcutting.MicroCutting;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;

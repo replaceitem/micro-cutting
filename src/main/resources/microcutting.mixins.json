@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "microcutting.mixin",
+  "package": "net.replaceitem.microcutting.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "RecipeManagerMixin"

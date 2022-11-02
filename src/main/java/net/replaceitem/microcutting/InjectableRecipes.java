@@ -1,4 +1,4 @@
-package microcutting;
+package net.replaceitem.microcutting;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;

@@ -1,4 +1,4 @@
-package microcutting;
+package net.replaceitem.microcutting;
 
 import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
@@ -28,7 +28,7 @@ public class MicroCutting implements ModInitializer, RecipeHolder {
 
     private Map<RecipeType<?>, Map<Identifier, Recipe<?>>> recipes;
     private Map<Identifier, Recipe<?>> stonecuttingRecipes;
-    public static final Logger LOGGER = LogManager.getLogger("microcutting");
+    public static final Logger LOGGER = LogManager.getLogger("net/replaceitem/microcutting");
     public static Config config;
 
     @Override
@@ -52,7 +52,7 @@ public class MicroCutting implements ModInitializer, RecipeHolder {
         ItemStack output = new ItemStack(Items.PLAYER_HEAD, config.headCount);
         output.setNbt(nbt);
         Ingredient input = Ingredient.ofStacks(item.getDefaultStack());
-        StonecuttingRecipe recipe = new StonecuttingRecipe(new Identifier("microcutting",item + "_microblock_" + index),"microblocks", input, output);
+        StonecuttingRecipe recipe = new StonecuttingRecipe(new Identifier("net/replaceitem/microcutting",item + "_microblock_" + index),"microblocks", input, output);
         stonecuttingRecipes.put(recipe.getId(), recipe);
     }
 

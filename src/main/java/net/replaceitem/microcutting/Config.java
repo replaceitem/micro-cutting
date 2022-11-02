@@ -1,4 +1,4 @@
-package microcutting;
+package net.replaceitem.microcutting;
 
 import net.fabricmc.loader.api.FabricLoader;
 

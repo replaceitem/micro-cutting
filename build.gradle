@@ -57,6 +57,7 @@ modrinth {
     gameVersions = ["1.18", "1.18.1", "1.18.2", "1.19", "1.19.1","1.19.2"] // Must be an array, even with only one version
     loaders = ["fabric"] // Must also be an array - no need to specify this if you're using Fabric Loom or ForgeGradle
     dependencies = []
+    changelog = rootProject.file("changelog.md").text
     syncBodyFrom = rootProject.file("MODRINTH.md").text
 }
 

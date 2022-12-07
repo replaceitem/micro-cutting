@@ -13,6 +13,7 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.StonecuttingRecipe;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
@@ -20,10 +21,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class MicroCutting implements ModInitializer, RecipeHolder {
 
@@ -78,13 +76,14 @@ public class MicroCutting implements ModInitializer, RecipeHolder {
         @SuppressWarnings("unchecked")
         Map<String, List<Map<String, String>>> map = (Map<String, List<Map<String, String>>>) gson.fromJson(reader, Map.class);
         map.forEach((itemId, microblocks) -> {
-            Item item = Registries.ITEM.get(Identifier.tryParse(itemId));
+            Optional<Item> item = Registries.ITEM.getOrEmpty(Identifier.tryParse(itemId));
+            if(item.isEmpty()) return;
             for (int i = 0, microblocksSize = microblocks.size(); i < microblocksSize; i++) {
                 Map<String, String> microblock = microblocks.get(i);
                 String uuidString = microblock.get("uuid");
                 String texture = microblock.get("texture");
                 UUID uuid = UUID.fromString(uuidString);
-                createMicroblockRecipe(item, texture, uuid, i);
+                createMicroblockRecipe(item.get(), texture, uuid, i);
             }
         });
     }

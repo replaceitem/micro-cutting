@@ -5,15 +5,16 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.SkullItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.StonecuttingRecipe;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -48,11 +49,11 @@ public class MicroCutting implements ModInitializer, RecipeHolder {
         properties.put("textures",textureList);
         skullOwner.put("Properties",properties);
         skullOwner.putUuid("Id",uuid);
-        nbt.put("SkullOwner",skullOwner);
+        nbt.put(SkullItem.SKULL_OWNER_KEY,skullOwner);
         ItemStack output = new ItemStack(Items.PLAYER_HEAD, config.headCount);
         output.setNbt(nbt);
         Ingredient input = Ingredient.ofStacks(item.getDefaultStack());
-        StonecuttingRecipe recipe = new StonecuttingRecipe(new Identifier("net/replaceitem/microcutting",item + "_microblock_" + index),"microblocks", input, output);
+        StonecuttingRecipe recipe = new StonecuttingRecipe(new Identifier("microcutting",item + "_microblock_" + index),"microblocks", input, output);
         stonecuttingRecipes.put(recipe.getId(), recipe);
     }
 
@@ -77,7 +78,7 @@ public class MicroCutting implements ModInitializer, RecipeHolder {
         @SuppressWarnings("unchecked")
         Map<String, List<Map<String, String>>> map = (Map<String, List<Map<String, String>>>) gson.fromJson(reader, Map.class);
         map.forEach((itemId, microblocks) -> {
-            Item item = Registry.ITEM.get(Identifier.tryParse(itemId));
+            Item item = Registries.ITEM.get(Identifier.tryParse(itemId));
             for (int i = 0, microblocksSize = microblocks.size(); i < microblocksSize; i++) {
                 Map<String, String> microblock = microblocks.get(i);
                 String uuidString = microblock.get("uuid");

@@ -9,11 +9,8 @@ import net.minecraft.item.SkullItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.StonecuttingRecipe;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
@@ -21,20 +18,51 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 
-public class MicroCutting implements ModInitializer, RecipeHolder {
-
-    private Map<RecipeType<?>, Map<Identifier, Recipe<?>>> recipes;
-    private Map<Identifier, Recipe<?>> stonecuttingRecipes;
+public class MicroCutting implements ModInitializer {
+    private static Map<Identifier, StonecuttingRecipe> stonecuttingRecipes;
     public static final Logger LOGGER = LogManager.getLogger("net/replaceitem/microcutting");
     public static Config config;
 
-    @Override
-    public Map<RecipeType<?>, Map<Identifier, Recipe<?>>> getRecipes() {
-        return recipes;
+    public static Map<Identifier, StonecuttingRecipe> getStonecuttingRecipes() {
+        return stonecuttingRecipes;
     }
 
+    @Override
+    public void onInitialize() {
+        config = Config.loadConfig();
+        stonecuttingRecipes = new HashMap<>();
+        loadBlocksFromJson();
+    }
+
+    private void loadBlocksFromJson() {
+        Gson gson = new Gson();
+        InputStream stream = MinecraftServer.class.getClassLoader().getResourceAsStream("assets/microcutting/heads.json");
+        if(stream == null) {
+            LOGGER.error("Could not load heads.json");
+            return;
+        }
+        InputStreamReader reader = new InputStreamReader(stream);
+        @SuppressWarnings("unchecked")
+        Map<String, List<Map<String, String>>> map = (Map<String, List<Map<String, String>>>) gson.fromJson(reader, Map.class);
+        map.forEach((itemId, microblocks) -> {
+            Optional<Item> item = Registries.ITEM.getOrEmpty(Identifier.tryParse(itemId));
+            if(item.isEmpty()) return;
+            int microblockCount = microblocks.size();
+            for (int i = 0; i < microblockCount; i++) {
+                Map<String, String> microblock = microblocks.get(i);
+                String uuidString = microblock.get("uuid");
+                String texture = microblock.get("texture");
+                UUID uuid = UUID.fromString(uuidString);
+                createMicroblockRecipe(item.get(), texture, uuid, i);
+            }
+        });
+    }
 
     private void createMicroblockRecipe(Item item, String texture, UUID uuid, int index) {
         NbtCompound nbt = new NbtCompound();
@@ -51,40 +79,8 @@ public class MicroCutting implements ModInitializer, RecipeHolder {
         ItemStack output = new ItemStack(Items.PLAYER_HEAD, config.headCount);
         output.setNbt(nbt);
         Ingredient input = Ingredient.ofStacks(item.getDefaultStack());
-        StonecuttingRecipe recipe = new StonecuttingRecipe(new Identifier("microcutting",item + "_microblock_" + index),"microblocks", input, output);
+        String identifierPath = item + "_microblock" + ((index == 0) ? ("_" + index) : (""));
+        StonecuttingRecipe recipe = new StonecuttingRecipe(new Identifier("microcutting",identifierPath),"microblocks", input, output);
         stonecuttingRecipes.put(recipe.getId(), recipe);
-    }
-
-    @Override
-    public void onInitialize() {
-        config = Config.loadConfig();
-        recipes = new HashMap<>();
-        stonecuttingRecipes = new HashMap<>();
-        loadBlocksFromJson();
-        recipes.put(RecipeType.STONECUTTING, stonecuttingRecipes);
-        InjectableRecipes.register(this);
-    }
-    
-    private void loadBlocksFromJson() {
-        Gson gson = new Gson();
-        InputStream stream = MinecraftServer.class.getClassLoader().getResourceAsStream("assets/microcutting/heads.json");
-        if(stream == null) {
-            LOGGER.error("Could not load heads.json");
-            return;
-        }
-        InputStreamReader reader = new InputStreamReader(stream);
-        @SuppressWarnings("unchecked")
-        Map<String, List<Map<String, String>>> map = (Map<String, List<Map<String, String>>>) gson.fromJson(reader, Map.class);
-        map.forEach((itemId, microblocks) -> {
-            Optional<Item> item = Registries.ITEM.getOrEmpty(Identifier.tryParse(itemId));
-            if(item.isEmpty()) return;
-            for (int i = 0, microblocksSize = microblocks.size(); i < microblocksSize; i++) {
-                Map<String, String> microblock = microblocks.get(i);
-                String uuidString = microblock.get("uuid");
-                String texture = microblock.get("texture");
-                UUID uuid = UUID.fromString(uuidString);
-                createMicroblockRecipe(item.get(), texture, uuid, i);
-            }
-        });
     }
 }

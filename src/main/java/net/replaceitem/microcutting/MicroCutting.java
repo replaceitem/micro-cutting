@@ -12,6 +12,8 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.StonecuttingRecipe;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,7 +28,7 @@ import java.util.UUID;
 
 public class MicroCutting implements ModInitializer {
     private static Map<Identifier, StonecuttingRecipe> stonecuttingRecipes;
-    public static final Logger LOGGER = LogManager.getLogger("net/replaceitem/microcutting");
+    public static final Logger LOGGER = LogManager.getLogger("MicroCutting");
     public static Config config;
 
     public static Map<Identifier, StonecuttingRecipe> getStonecuttingRecipes() {
@@ -41,7 +43,6 @@ public class MicroCutting implements ModInitializer {
     }
 
     private void loadBlocksFromJson() {
-        Gson gson = new Gson();
         InputStream stream = MinecraftServer.class.getClassLoader().getResourceAsStream("assets/microcutting/heads.json");
         if(stream == null) {
             LOGGER.error("Could not load heads.json");
@@ -49,7 +50,7 @@ public class MicroCutting implements ModInitializer {
         }
         InputStreamReader reader = new InputStreamReader(stream);
         @SuppressWarnings("unchecked")
-        Map<String, List<Map<String, String>>> map = (Map<String, List<Map<String, String>>>) gson.fromJson(reader, Map.class);
+        Map<String, List<Map<String, String>>> map = (Map<String, List<Map<String, String>>>) new Gson().fromJson(reader, Map.class);
         map.forEach((itemId, microblocks) -> {
             Optional<Item> item = Registries.ITEM.getOrEmpty(Identifier.tryParse(itemId));
             if(item.isEmpty()) return;
@@ -78,8 +79,9 @@ public class MicroCutting implements ModInitializer {
         nbt.put(SkullItem.SKULL_OWNER_KEY,skullOwner);
         ItemStack output = new ItemStack(Items.PLAYER_HEAD, config.headCount);
         output.setNbt(nbt);
+        if(config.writeName) output.setCustomName(item.getName().copy().append(" Microblock").styled(style -> style.withItalic(false)));
         Ingredient input = Ingredient.ofStacks(item.getDefaultStack());
-        String identifierPath = item + "_microblock" + ((index == 0) ? ("_" + index) : (""));
+        String identifierPath = item + "_microblock" + ((index != 0) ? ("_" + index) : (""));
         StonecuttingRecipe recipe = new StonecuttingRecipe(new Identifier("microcutting",identifierPath),"microblocks", input, output);
         stonecuttingRecipes.put(recipe.getId(), recipe);
     }

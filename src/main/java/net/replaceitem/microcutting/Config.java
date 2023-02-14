@@ -22,9 +22,11 @@ public class Config {
             MicroCutting.LOGGER.error("Invalid property for 'head-count', has to be a number");
             this.headCount = 4;
         }
+        this.writeName = Boolean.parseBoolean(properties.getProperty("write-name"));
     }
     
     public int headCount;
+    public boolean writeName;
     
     public static Config loadConfig() {
         try {
@@ -51,6 +53,7 @@ public class Config {
     private static Properties getDefaultProperties() {
         Properties defaults = new Properties();
         defaults.setProperty("head-count","4");
+        defaults.setProperty("write-name","true");
         return defaults;
     }
 }

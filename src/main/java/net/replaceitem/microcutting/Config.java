@@ -38,10 +38,14 @@ public class Config {
             }
             InputStream inputStream = new FileInputStream(file);
             properties.load(inputStream);
+            boolean changed = false;
             for(Map.Entry<Object,Object> entry : DEFAULT_PROPERTIES.entrySet()) {
-                properties.putIfAbsent(entry.getKey(),entry.getValue());
+                if(!properties.containsKey(entry.getKey())) {
+                    properties.put(entry.getKey(),entry.getValue());
+                    changed = true;
+                }
             }
-            properties.store(new FileOutputStream(file), "MicroCutting configuration");
+            if(changed) properties.store(new FileOutputStream(file), "MicroCutting configuration");
             return new Config(properties);
         } catch (IOException e) {
             MicroCutting.LOGGER.error("Could not load or create config", e);

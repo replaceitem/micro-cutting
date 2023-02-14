@@ -16,6 +16,7 @@ By putting a grass block into the stonecutter, you can craft eight playerheads w
 Some things can be configured in the `microcutting.properties` file in the `config` folder.
 
 * `head-count` (Default: `4`) The amount of heads you get for converting one block.
+* `write-name` (Default: `true`) Whether the name of the block should be written to the player head using the format "<original block name> Microblock". Note that you may want to install [Head Name Fix](https://modrinth.com/mod/headfix) to make them retain their names and still stack with heads that weren't placed yet.
 
 ## Preview
 
@@ -24,4 +25,3 @@ Some things can be configured in the `microcutting.properties` file in the `conf
 
 Credits:
 * All custom heads are fetched from the [vanillatweaks wandering trader datapack](https://vanillatweaks.net/picker/datapacks/).
-* The recipes added with [orangemonkey68/injectable-recipes](https://github.com/orangemonkey68/injectable-recipes)

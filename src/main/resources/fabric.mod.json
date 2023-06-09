@@ -3,7 +3,7 @@
   "id": "microcutting",
   "version": "${version}",
   "name": "MicroCutting",
-  "description": "Make Microblocks inside stonecutters",
+  "description": "Make Microblocks inside stonecutters.\n\nCredits:\nVanilla Tweaks: https://vanillatweaks.net/",
   "authors": [
     "replaceitem"
   ],

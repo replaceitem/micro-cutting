@@ -5,52 +5,51 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.SkullItem;
+import net.minecraft.item.PlayerHeadItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.StonecuttingRecipe;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 public class MicroCutting implements ModInitializer {
-    private static Map<Identifier, StonecuttingRecipe> stonecuttingRecipes;
     public static final Logger LOGGER = LogManager.getLogger("MicroCutting");
     public static Config config;
-
-    public static Map<Identifier, StonecuttingRecipe> getStonecuttingRecipes() {
-        return stonecuttingRecipes;
-    }
 
     @Override
     public void onInitialize() {
         config = Config.loadConfig();
-        stonecuttingRecipes = new HashMap<>();
-        loadBlocksFromJson();
     }
 
-    private void loadBlocksFromJson() {
+    @Nullable
+    public static List<RecipeEntry<StonecuttingRecipe>> loadBlocksFromJson() {
         InputStream stream = MinecraftServer.class.getClassLoader().getResourceAsStream("assets/microcutting/heads.json");
         if(stream == null) {
             LOGGER.error("Could not load heads.json");
-            return;
+            return null;
         }
         InputStreamReader reader = new InputStreamReader(stream);
         @SuppressWarnings("unchecked")
         Map<String, List<Map<String, String>>> map = (Map<String, List<Map<String, String>>>) new Gson().fromJson(reader, Map.class);
+        List<RecipeEntry<StonecuttingRecipe>> list = new ArrayList<>();
         map.forEach((itemId, microblocks) -> {
             Optional<Item> item = Registries.ITEM.getOrEmpty(Identifier.tryParse(itemId));
             if(item.isEmpty()) return;
@@ -60,29 +59,37 @@ public class MicroCutting implements ModInitializer {
                 String uuidString = microblock.get("uuid");
                 String texture = microblock.get("texture");
                 UUID uuid = UUID.fromString(uuidString);
-                createMicroblockRecipe(item.get(), texture, uuid, i);
+                list.add(createMicroblockRecipe(item.get(), texture, uuid, i));
             }
         });
+        return list;
     }
 
-    private void createMicroblockRecipe(Item item, String texture, UUID uuid, int index) {
+    private static RecipeEntry<StonecuttingRecipe> createMicroblockRecipe(Item item, String texture, UUID uuid, int index) {
+        NbtCompound nbt = makeSkullNbt(texture, uuid);
+        ItemStack output = new ItemStack(Items.PLAYER_HEAD, config.headCount);
+        output.setNbt(nbt);
+        if(config.writeName) output.setCustomName(item.getName().copy().append(" Microblock").styled(style -> style.withItalic(false)));
+        Ingredient input = Ingredient.ofStacks(item.getDefaultStack());
+        String identifierPath = item + "_microblock" + ((index != 0) ? ("_" + index) : (""));
+        Identifier identifier = new Identifier("microcutting", identifierPath);
+        StonecuttingRecipe recipe = new StonecuttingRecipe("", input, output);
+        return new RecipeEntry<>(identifier, recipe);
+    }
+
+    @NotNull
+    private static NbtCompound makeSkullNbt(String texture, UUID uuid) {
         NbtCompound nbt = new NbtCompound();
         NbtCompound textureValue = new NbtCompound();
-        textureValue.putString("Value",texture);
+        textureValue.putString("Value", texture);
         NbtList textureList = new NbtList();
         textureList.add(textureValue);
         NbtCompound skullOwner = new NbtCompound();
         NbtCompound properties = new NbtCompound();
         properties.put("textures",textureList);
         skullOwner.put("Properties",properties);
-        skullOwner.putUuid("Id",uuid);
-        nbt.put(SkullItem.SKULL_OWNER_KEY,skullOwner);
-        ItemStack output = new ItemStack(Items.PLAYER_HEAD, config.headCount);
-        output.setNbt(nbt);
-        if(config.writeName) output.setCustomName(item.getName().copy().append(" Microblock").styled(style -> style.withItalic(false)));
-        Ingredient input = Ingredient.ofStacks(item.getDefaultStack());
-        String identifierPath = item + "_microblock" + ((index != 0) ? ("_" + index) : (""));
-        StonecuttingRecipe recipe = new StonecuttingRecipe(new Identifier("microcutting",identifierPath),"microblocks", input, output);
-        stonecuttingRecipes.put(recipe.getId(), recipe);
+        skullOwner.putUuid("Id", uuid);
+        nbt.put(PlayerHeadItem.SKULL_OWNER_KEY,skullOwner);
+        return nbt;
     }
 }

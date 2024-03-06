@@ -1,3 +1,5 @@
+import net.replaceitem.microcutting.Converter
+
 plugins {
     id 'fabric-loom' version '1.4-SNAPSHOT'
     id 'maven-publish'
@@ -8,8 +10,6 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
-version = project.minecraft_version + '-' + project.mod_version
-group = project.maven_group
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -17,60 +17,46 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 }
 
-processResources {
-    inputs.property "version", project.version
-
-    filesMatching("fabric.mod.json") {
-        expand "version": project.version
-    }
-}
-
-processResources {
-    inputs.property "version", project.version
-
-    filesMatching("fabric.mod.json") {
-        expand "version": project.mod_version
-    }
-}
-
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"
     it.options.release = 17
 }
 
-java {
-    withSourcesJar()
+tasks.register('updatePack') {
+    doLast {
+        rootProject.file("data").deleteDir()
+        Converter.createPack(rootProject.rootDir.toPath(), rootProject.file("add_trade.mcfunction"))
+    }
 }
 
-jar {
-    from("LICENSE") {
-        rename { "${it}_${project.archivesBaseName}"}
+tasks.register('installPack') {
+    dependsOn 'zipPack'
+    doLast {
+        def zipFile = tasks.named('zipPack').get().archiveFile.get().asFile
+        def destinationDir = file("${rootProject.rootDir}/run/saves/world/datapacks")
+        if (!destinationDir.exists()) destinationDir.mkdirs()
+        ant.move(file: zipFile, todir: destinationDir)
+    }
+}
+
+tasks.register('zipPack', Zip) {
+    destinationDirectory = file("${rootProject.layout.buildDirectory.getAsFile().get()}/libs")
+    from('.') {
+        include 'data/**'
+        include 'pack.mcmeta'
+        include 'pack.png'
+        include 'LICENSE'
     }
 }
 
 modrinth {
-    token = System.getenv("MODRINTH_TOKEN") // This is the default. Remember to have the MODRINTH_TOKEN environment variable set or else this will fail, or set it to whatever you want - just make sure it stays private!
+    token = System.getenv("MODRINTH_TOKEN")
     projectId = "8B77TpQR"
-    versionNumber = project.mod_version // You don't need to set this manually. Will fail if Modrinth has this version already
-    versionType = "release" // This is the default
-    uploadFile = remapJar // With Fabric Loom or Architectury Loom, this MUST be set to `remapJar` instead of `jar`!
-    loaders = ["fabric"] // Must also be an array - no need to specify this if you're using Fabric Loom or ForgeGradle
-    dependencies = []
+    versionNumber = project.pack_version
+    versionType = "release"
+    uploadFile = zipPack
+    loaders = ["datapack"]
+    gameVersions = ["24w10a"]
     changelog = rootProject.file("changelog.md").text
-    syncBodyFrom = rootProject.file("MODRINTH.md").text
-}
-
-// configure the maven publication
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
-
-    // select the repositories you want to publish to
-    repositories {
-        // uncomment to publish to the local maven
-        // mavenLocal()
-    }
+    syncBodyFrom = rootProject.file("README.md").text
 }

@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": ""
+    },
+    "result": {
+        "id": "minecraft:player_head",
+        "count": 4,
+        "components": {
+            "minecraft:custom_name": "{\"text\": \"test\",\"color\": \"red\"}",
+            "minecraft:profile": {
+                "id": [],
+                "properties": [
+                    {
+                        "name": "textures",
+                        "value": ""
+                    }
+                ]
+            }
+        }
+    }
+}

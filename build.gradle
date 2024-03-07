@@ -10,6 +10,7 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
+pack_version = project.pack_version
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -29,18 +30,18 @@ tasks.register('updatePack') {
     }
 }
 
-tasks.register('installPack') {
+tasks.register('installPack', Copy) {
     dependsOn 'zipPack'
-    doLast {
-        def zipFile = tasks.named('zipPack').get().archiveFile.get().asFile
-        def destinationDir = file("${rootProject.rootDir}/run/saves/world/datapacks")
-        if (!destinationDir.exists()) destinationDir.mkdirs()
-        ant.move(file: zipFile, todir: destinationDir)
+    from tasks.named('zipPack').get().archiveFile.get().asFile
+    into "${rootProject.rootDir}/run/saves/world/datapacks"
+    rename {
+        'microcutting.zip'
     }
 }
 
 tasks.register('zipPack', Zip) {
     destinationDirectory = file("${rootProject.layout.buildDirectory.getAsFile().get()}/libs")
+    archiveBaseName = archivesBaseName + '-' + pack_version
     from('.') {
         include 'data/**'
         include 'pack.mcmeta'

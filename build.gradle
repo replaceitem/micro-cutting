@@ -35,7 +35,7 @@ tasks.register('installPack', Copy) {
     from tasks.named('zipPack').get().archiveFile.get().asFile
     into "${rootProject.rootDir}/run/saves/world/datapacks"
     rename {
-        'microcutting.zip'
+        "${archivesBaseName}.zip"
     }
 }
 

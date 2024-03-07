@@ -1,0 +1,1 @@
+* Converted mod to a datapack

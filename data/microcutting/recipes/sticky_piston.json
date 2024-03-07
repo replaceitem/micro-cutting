@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:sticky_piston"
+    },
+    "result": {
+        "id": "minecraft:player_head",
+        "count": 4,
+        "components": {
+            "minecraft:custom_name": "{\"type\":\"translatable\",\"translate\":\"block.minecraft.sticky_piston\",\"italic\":false,\"color\":\"yellow\"}",
+            "minecraft:profile": {
+                "id": [
+                    224049703,
+                    -1327742785,
+                    -2081567788,
+                    1222894220
+                ],
+                "properties": [
+                    {
+                        "name": "textures",
+                        "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWE2ZmVlNWI2MWVmYzYzYjliNDRmYzMyMjA2N2ZiNjIwZGQ1ZWE5YTdmYjJmODVhMGFhZGVjODAzOGJjMTM3NCJ9fX0="
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:brain_coral_block"
+    },
+    "result": {
+        "id": "minecraft:player_head",
+        "count": 4,
+        "components": {
+            "minecraft:custom_name": "{\"type\":\"translatable\",\"translate\":\"block.minecraft.brain_coral_block\",\"italic\":false,\"color\":\"yellow\"}",
+            "minecraft:profile": {
+                "id": [
+                    -1665893688,
+                    -64271270,
+                    -1237356966,
+                    820830712
+                ],
+                "properties": [
+                    {
+                        "name": "textures",
+                        "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTU3ZGQ0M2U4ZjFjZDEzNzI2YzBmOTlhYzQwNDcxNTA0N2QxMmViNDJhMjhmZmM2YWU5YmZiM2I3MGQ3NjQwYSJ9fX0="
+                    }
+                ]
+            }
+        }
+    }
+}

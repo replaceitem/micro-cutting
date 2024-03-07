@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:redstone_lamp"
+    },
+    "result": {
+        "id": "minecraft:player_head",
+        "count": 4,
+        "components": {
+            "minecraft:custom_name": "{\"type\":\"translatable\",\"translate\":\"block.minecraft.redstone_lamp\",\"italic\":false,\"color\":\"yellow\"}",
+            "minecraft:profile": {
+                "id": [
+                    -1606037138,
+                    -608417237,
+                    -1705988446,
+                    -1395930768
+                ],
+                "properties": [
+                    {
+                        "name": "textures",
+                        "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTAwZTg1ODU1YTY1OTVkODg5ZWYyNDYzOTZlMWQwNmIyYjg0MzFlMTAyZDcxYmViY2I1YzU5NTIzNzFiNzdiMyJ9fX0="
+                    }
+                ]
+            }
+        }
+    }
+}

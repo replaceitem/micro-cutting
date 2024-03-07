@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:dark_oak_log"
+    },
+    "result": {
+        "id": "minecraft:player_head",
+        "count": 4,
+        "components": {
+            "minecraft:custom_name": "{\"type\":\"translatable\",\"translate\":\"block.minecraft.dark_oak_log\",\"italic\":false,\"color\":\"yellow\"}",
+            "minecraft:profile": {
+                "id": [
+                    1376481580,
+                    1944407918,
+                    -1957933184,
+                    -750621374
+                ],
+                "properties": [
+                    {
+                        "name": "textures",
+                        "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGIyZDUzNjA4NjM0OGZkZmMwODExZjljNmY2ZWMxYzBhN2Q2MDUwNzYxZjU5MjFiMmE3YTVkM2EwMDU5ZWMwMCJ9fX0="
+                    }
+                ]
+            }
+        }
+    }
+}

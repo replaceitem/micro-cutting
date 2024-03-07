@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:terracotta"
+    },
+    "result": {
+        "id": "minecraft:player_head",
+        "count": 4,
+        "components": {
+            "minecraft:custom_name": "{\"type\":\"translatable\",\"translate\":\"block.minecraft.terracotta\",\"italic\":false,\"color\":\"yellow\"}",
+            "minecraft:profile": {
+                "id": [
+                    1874327669,
+                    -1673772664,
+                    -1197322895,
+                    -854659724
+                ],
+                "properties": [
+                    {
+                        "name": "textures",
+                        "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmRkMWJkYjk0MWJkNjkyOGZhMDFlM2NkY2E2MzdhZjViNjFmYmNiYWZhZTk2MmQ0MTQzMDQ5MTUzYjA3NThhMyJ9fX0="
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:bee_nest"
+    },
+    "result": {
+        "id": "minecraft:player_head",
+        "count": 4,
+        "components": {
+            "minecraft:custom_name": "{\"type\":\"translatable\",\"translate\":\"block.minecraft.bee_nest\",\"italic\":false,\"color\":\"yellow\"}",
+            "minecraft:profile": {
+                "id": [
+                    1531529133,
+                    982403127,
+                    -1306589372,
+                    694025795
+                ],
+                "properties": [
+                    {
+                        "name": "textures",
+                        "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDZmMjAwMDZlZWI0NTcyZWZlMTljM2YxNjcyMjY5MGY3MzVkYTlmZWE0Y2ZjOTQxZWI0YzNlZDU3NDNmMTkwNiJ9fX0="
+                    }
+                ]
+            }
+        }
+    }
+}

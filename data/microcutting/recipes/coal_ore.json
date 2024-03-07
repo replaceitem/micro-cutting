@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:coal_ore"
+    },
+    "result": {
+        "id": "minecraft:player_head",
+        "count": 4,
+        "components": {
+            "minecraft:custom_name": "{\"type\":\"translatable\",\"translate\":\"block.minecraft.coal_ore\",\"italic\":false,\"color\":\"yellow\"}",
+            "minecraft:profile": {
+                "id": [
+                    -1725231534,
+                    -1363850864,
+                    -1210473829,
+                    43332144
+                ],
+                "properties": [
+                    {
+                        "name": "textures",
+                        "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTVkZTZkYTBjMzNkODAyNjFjNzhhZmJlMjY0Mjc5M2M2YTM4NTJkODdjZjY1ZDVhMjU5Njg1OGMwYjViY2EwNiJ9fX0="
+                    }
+                ]
+            }
+        }
+    }
+}

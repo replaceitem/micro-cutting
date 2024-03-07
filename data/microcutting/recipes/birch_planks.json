@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:birch_planks"
+    },
+    "result": {
+        "id": "minecraft:player_head",
+        "count": 4,
+        "components": {
+            "minecraft:custom_name": "{\"type\":\"translatable\",\"translate\":\"block.minecraft.birch_planks\",\"italic\":false,\"color\":\"yellow\"}",
+            "minecraft:profile": {
+                "id": [
+                    1047289262,
+                    -427670359,
+                    -2029437413,
+                    1110480387
+                ],
+                "properties": [
+                    {
+                        "name": "textures",
+                        "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNjODg4NzczZTlkMTFjYzhhYjE0ZmM4OGUwY2ZmOTRjY2IxNmM4OWE1OGZlYzE4MWUyMmYwZmIxOTRiYjlmZCJ9fX0="
+                    }
+                ]
+            }
+        }
+    }
+}

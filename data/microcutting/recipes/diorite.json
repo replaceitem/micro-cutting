@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:diorite"
+    },
+    "result": {
+        "id": "minecraft:player_head",
+        "count": 4,
+        "components": {
+            "minecraft:custom_name": "{\"type\":\"translatable\",\"translate\":\"block.minecraft.diorite\",\"italic\":false,\"color\":\"yellow\"}",
+            "minecraft:profile": {
+                "id": [
+                    -1248682033,
+                    -917159854,
+                    -1791654945,
+                    1580895416
+                ],
+                "properties": [
+                    {
+                        "name": "textures",
+                        "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTVjMWVmMmQ0NDY1NzE1MDZiNTlmOTI5MTAzZDE5NTZmYzMxNTJmZDlkNDAwMjAyNmJjZTViMDI4YzkxN2ZlZiJ9fX0="
+                    }
+                ]
+            }
+        }
+    }
+}

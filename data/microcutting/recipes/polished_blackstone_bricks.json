@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:polished_blackstone_bricks"
+    },
+    "result": {
+        "id": "minecraft:player_head",
+        "count": 4,
+        "components": {
+            "minecraft:custom_name": "{\"type\":\"translatable\",\"translate\":\"block.minecraft.polished_blackstone_bricks\",\"italic\":false,\"color\":\"yellow\"}",
+            "minecraft:profile": {
+                "id": [
+                    1680798805,
+                    1200308658,
+                    -1632202330,
+                    -751602947
+                ],
+                "properties": [
+                    {
+                        "name": "textures",
+                        "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzk3NzUwYTI4NGZmNDAzOGNiMDM1ZjFkNmRiMDQ5M2ZmNTM5YzhhOTNhZTNjZGE2MTg2ZGYwYmU2MTYyYzMwNCJ9fX0="
+                    }
+                ]
+            }
+        }
+    }
+}

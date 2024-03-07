@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:oak_planks"
+    },
+    "result": {
+        "id": "minecraft:player_head",
+        "count": 4,
+        "components": {
+            "minecraft:custom_name": "{\"type\":\"translatable\",\"translate\":\"block.minecraft.oak_planks\",\"italic\":false,\"color\":\"yellow\"}",
+            "minecraft:profile": {
+                "id": [
+                    633395295,
+                    -232963161,
+                    -1467812704,
+                    563787538
+                ],
+                "properties": [
+                    {
+                        "name": "textures",
+                        "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzgxOTJhMWFkZDRhMTExMjRhZDFlOWI2M2ZhN2Q5NzViNTUwMGJmZjEyNzQyNGU3NWJmMjliMjlmNmFmYjI2NSJ9fX0="
+                    }
+                ]
+            }
+        }
+    }
+}

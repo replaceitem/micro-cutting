@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:warped_nylium"
+    },
+    "result": {
+        "id": "minecraft:player_head",
+        "count": 4,
+        "components": {
+            "minecraft:custom_name": "{\"type\":\"translatable\",\"translate\":\"block.minecraft.warped_nylium\",\"italic\":false,\"color\":\"yellow\"}",
+            "minecraft:profile": {
+                "id": [
+                    -1460937009,
+                    -929543100,
+                    -1652589070,
+                    1066173610
+                ],
+                "properties": [
+                    {
+                        "name": "textures",
+                        "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmUzZTFiZDJhMWJiMmRkNzczYmNmMTExMWMxNDZlMTAwNDMwNmFiOTk1ZDUxMDA5ZTY3ZDNhNWMyMTZmMjJlMSJ9fX0="
+                    }
+                ]
+            }
+        }
+    }
+}

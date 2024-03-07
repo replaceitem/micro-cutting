@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:cherry_leaves"
+    },
+    "result": {
+        "id": "minecraft:player_head",
+        "count": 4,
+        "components": {
+            "minecraft:custom_name": "{\"type\":\"translatable\",\"translate\":\"block.minecraft.cherry_leaves\",\"italic\":false,\"color\":\"yellow\"}",
+            "minecraft:profile": {
+                "id": [
+                    1711916627,
+                    -1379906121,
+                    -1833020947,
+                    -77999164
+                ],
+                "properties": [
+                    {
+                        "name": "textures",
+                        "value": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjk4YjM4YWViZTdjNGVkNWM4MTllZTQyM2YzYjQ2YzYwNjg0Y2JkM2VkMGZhNGE5ZmQ1OTNhY2E2M2MwYWM4NSJ9fX0="
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -2,6 +2,6 @@
     "pack": {
         "pack_format": 34,
         "supported_formats": [34],
-        "description": "Make Microblocks inside stonecutters.\nCredits: Vanilla Tweaks: https://vanillatweaks.net/"
+        "description": "Make Microblocks in stonecutters"
     }
 }

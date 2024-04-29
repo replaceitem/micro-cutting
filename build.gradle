@@ -57,7 +57,7 @@ modrinth {
     versionType = "release"
     uploadFile = zipPack
     loaders = ["datapack"]
-    gameVersions = ["24w10a"]
+    gameVersions = ["1.20.5","1.20.6"]
     changelog = rootProject.file("changelog.md").text
     syncBodyFrom = rootProject.file("README.md").text
 }

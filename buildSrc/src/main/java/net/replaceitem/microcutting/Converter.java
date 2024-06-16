@@ -33,7 +33,7 @@ public class Converter {
             NAME_TEMPLATE = JsonParser.parseReader(reader);
         }
         
-        Path recipesPath = packRoot.resolve("data").resolve(PACK_ID).resolve("recipes");
+        Path recipesPath = packRoot.resolve("data").resolve(PACK_ID).resolve("recipe");
         Files.createDirectories(recipesPath);
         try(BufferedReader reader = new BufferedReader(new FileReader(addTradeFunctionFile, StandardCharsets.UTF_8))) {
             reader.lines()

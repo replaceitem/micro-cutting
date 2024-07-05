@@ -1,3 +1,5 @@
+# ⚠️ This project is discontinued, since [Vanilla Tweaks](https://vanillatweaks.net/picker/datapacks/) added this functionality with a bigger set of blocks
+
 # MicroCutting
 
 [<img alt="See me on GitHub" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@2.8.0/assets/cozy/social/github-singular_vector.svg">](https://github.com/replaceitem)

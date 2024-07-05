@@ -1,4 +1,6 @@
-# ⚠️ This project is discontinued, since [Vanilla Tweaks](https://vanillatweaks.net/picker/datapacks/) added this functionality with a bigger set of blocks
+# ⚠️ This project is discontinued, since Vanilla Tweaks added this functionality with a bigger set of blocks
+
+Get it [here](https://vanillatweaks.net/picker/datapacks/)
 
 # MicroCutting
 
